@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { FieldContainer } from './Field'
+import { FieldWrapper} from './Field'
 
 
 const Field = ({
@@ -13,11 +13,11 @@ const Field = ({
  }) => {
   const handleChange = (event) => {
     const { name, value } = event.target;
-    changeValue(name, value) 
+    changeValue(name, value); 
   }
 
   return (
-    <FieldContainer>
+    <FieldWrapper>
       <input
         type={type}
         name={nameIdFor}
@@ -27,8 +27,8 @@ const Field = ({
         onChange={handleChange} 
       />
       <label htmlFor={nameIdFor}>{label}</label>
-      {nameIdFor === 'signUpPassword' && <p>Le mot de passe doit faire au moins 8 caractères et comprendre au moins un chiffre, une minuscule, une majuscule et un caractère spécial.</p>}
-    </FieldContainer>
+      {nameIdFor === 'signUpPassword' && <p>Le mot de passe doit comprendre au moins 8 caractères dont un chiffre, une minuscule, une majuscule et un caractère spécial.</p>}
+    </FieldWrapper>
   )
 }
 

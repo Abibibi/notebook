@@ -2,7 +2,7 @@
 import { connect } from 'react-redux';
 
 // == Import : local
-import Unlogged from 'src/pages/Unlogged';
+import Form from 'src/components/Form';
 
 // Action Creators
 import { doSomething } from 'src/store/reducer';
@@ -37,13 +37,13 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 });
 
 // Container
-const UnloggedContainer = connect(
+const FormContainer = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(Unlogged);
+)(Form);
 
 // == Export
-export default UnloggedContainer;
+export default FormContainer;
 
 /* = export à la volée
 export default connect(

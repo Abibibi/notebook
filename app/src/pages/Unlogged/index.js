@@ -7,16 +7,10 @@ import {
   Second
 } from './Unlogged';
 import logo from 'src/styles/assets/images/logo.svg'
-import Field from 'src/containers/Field'
+import Form from 'src/containers/Form'
 
-const Unlogged = ({
-  firstname,
-  signUpEmail,
-  signUpPassword,
-  signUpConfirmPwd,
-  signInEmail,
-  signInPassword
-}) => {
+
+const Unlogged = () => {
 
   return (
     <Container>
@@ -27,36 +21,7 @@ const Unlogged = ({
         </First>
         <Second>
           <h1>Inscription</h1>
-          <form>
-            <Field
-              type="text"
-              nameIdFor="firstname"
-              title="Veuillez renseigner votre prénom"
-              label="Prénom"
-              value={firstname}
-            />
-            <Field
-              type="email"
-              nameIdFor="signUpEmail"
-              title="Veuillez renseigner votre adresse e-mail"
-              label="E-mail"
-              value={signUpEmail}
-            />
-            <Field
-              type="password"
-              nameIdFor="signUpPassword"
-              title="Veuillez renseigner un mot de passe"
-              label="Mot de passe"
-              value={signUpPassword}
-            />
-            <Field
-              type="password"
-              nameIdFor="signUpConfirmPwd"
-              title="Veuillez confirmer votre mot de passe"
-              label="Confirmation du mot de passe"
-              value={signUpConfirmPwd}
-            />
-          </form>
+          <Form />
         </Second>
       </Blocks>
     </Container>
