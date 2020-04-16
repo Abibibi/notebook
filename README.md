@@ -10,7 +10,7 @@ Tools used
 --------------------
 
 - Backend: Node.js, Express.js, Mongoose, Redis
-- DB: MongoDB
+- Database: MongoDB
 - Frontend: React, Redux
 
 Language
