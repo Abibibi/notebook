@@ -6,7 +6,7 @@ const sizes = {
   L: '1.25',
   XL: '1.5',
   XXL: '2',
-  XXXL: '3',
+  XXXL: '3'
 }
 
 export const SCREEN = {
@@ -14,7 +14,7 @@ export const SCREEN = {
   LANDSCAPE: '@media screen and (min-width: 500px) and (max-height: 500px)',
   TABLET: '@media screen and (max-width: 1179px) and (min-width:768px)',
   MOBILE_AND_TABLET: '@media screen and (max-width: 1179px)',
-  DESKTOP: '@media screen and (min-width: 1180px)',
+  DESKTOP: '@media screen and (min-width: 1180px)'
 }
 
 const properUnit = (sizes, unit) => {
