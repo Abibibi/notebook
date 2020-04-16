@@ -7,6 +7,7 @@ import { ThemeProvider } from 'styled-components'
 // == Import : local
 import App from 'src/components/App';
 import store from 'src/store';
+import theme from './styles/theme';
 
 // == Render
 const rootComponent = (
