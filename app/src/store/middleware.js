@@ -1,4 +1,4 @@
-const logMiddleware = (store) => (next) => (action) => {
+const middleware = (store) => (next) => (action) => {
   console.log('Je suis le middleware, et je laisse passer cette action: ', action);
   next(action);
 
@@ -20,4 +20,4 @@ const logMiddleware = (store) => (next) => (action) => {
   // }
 };
 
-export default logMiddleware;
+export default middleware;

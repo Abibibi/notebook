@@ -1,18 +1,23 @@
 // == Initial State
 const initialState = {
-  message: 'Hello',
+  firstname: '',
+  signUpEmail: '',
+  signUpPassword: '',
+  signUpConfirmPwd: '',
+  signInEmail: '',
+  signInPassword: ''
 };
 
 // == Types
-const DO_SOMETHING = 'DO_SOMETHING';
+const VALUE_CHANGED = 'VALUE_CHANGED';
 
 // == Reducer
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
-    case DO_SOMETHING:
+    case VALUE_CHANGED:
       return {
         ...state,
-        message: action.message,
+        [action.name]: action.value,
       };
 
     default:
@@ -21,9 +26,10 @@ const reducer = (state = initialState, action = {}) => {
 };
 
 // == Action Creators
-export const doSomething = message => ({
-  type: DO_SOMETHING,
-  message,
+export const valueChanged = (name, value)=> ({
+  type: VALUE_CHANGED,
+  name,
+  value
 });
 
 

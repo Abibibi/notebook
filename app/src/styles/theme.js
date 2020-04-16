@@ -28,7 +28,8 @@ const properUnit = (sizes, unit) => {
 export default {
   color: {
     burgundy: '#481f1f',
-    white: '#ffffff'
+    white: '#ffffff',
+    black: '#000000'
   },
   font: properUnit(sizes, 'em'),
   spacing: properUnit(sizes, 'rem')

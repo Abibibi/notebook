@@ -72,7 +72,7 @@ export const First = styled.div`
       display: block;
       margin-top: ${({ theme }) => theme.spacing.S};
       ${SCREEN.DESKTOP} {
-        margin-top: 2vh;
+        margin-top: 2.4vh;
         font-size: 4.1vh;
       }
     }
@@ -82,9 +82,19 @@ export const First = styled.div`
 export const Second = styled.div`
   height: 50%;
   width: 100%;
+  color: ${({ theme }) => theme.color.black};
+  padding: ${({ theme }) => theme.spacing.XL};
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   ${SCREEN.DESKTOP} {
     height: 100%;
     width: 50%;
+  }
+
+  h1 {
+    font-size: ${({ theme }) => theme.font.XL};
+    font-weight: 600;
   }
 `
 

@@ -3,7 +3,7 @@ import React from 'react';
 
 // == Import : local
 import './app.scss';
-import Unlogged from 'src/pages/Unlogged'
+import Unlogged from 'src/containers/Unlogged'
 
 // == Composant
 const App = () => (
