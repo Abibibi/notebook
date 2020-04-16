@@ -12,9 +12,9 @@ const sizes = {
 export const SCREEN = {
   MOBILE: '@media screen and (max-width: 767px)',
   LANDSCAPE: '@media screen and (min-width: 500px) and (max-height: 500px)',
-  TABLET: '@media screen and (max-width: 1179px) and (min-width:768px)',
+  TABLET: '@media screen and (max-width: 999px) and (min-width:768px)',
   MOBILE_AND_TABLET: '@media screen and (max-width: 1179px)',
-  DESKTOP: '@media screen and (min-width: 1180px)'
+  DESKTOP: '@media screen and (min-width: 1000px)'
 }
 
 const properUnit = (sizes, unit) => {
@@ -26,6 +26,10 @@ const properUnit = (sizes, unit) => {
 }
 
 export default {
+  color: {
+    burgundy: '#481f1f',
+    white: '#ffffff'
+  },
   font: properUnit(sizes, 'em'),
   spacing: properUnit(sizes, 'rem')
 }
