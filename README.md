@@ -13,6 +13,15 @@ Tools used
 - Database: MongoDB
 - Frontend: React, Redux
 
+How to run app locally
+--------------------
+
+- Frontend
+  * `cd app/`
+  * `nvm use` to use proper Node version
+  * `yarn`
+  * `yarn start`
+
 Language
 --------------------
 
