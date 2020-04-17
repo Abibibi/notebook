@@ -69,6 +69,10 @@ const FieldWrapper = styled.div`
       transform: translateY(-2vh);
     }
   }
+
+  .error {
+    color: ${({ theme }) => theme.color.red};
+  }
 `;
 
 export default FieldWrapper;

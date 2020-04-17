@@ -19,7 +19,9 @@ const mapStateToProps = (state, ownProps) => ({
   nameIdFor: ownProps.nameIdFor,
   title: ownProps.title,
   label: ownProps.label,
-  value: ownProps.value
+  value: ownProps.value,
+  error: ownProps.error,
+  submission: ownProps.submission,
 });
 
 /* === Actions ===

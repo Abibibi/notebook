@@ -34,6 +34,7 @@ export default {
     brown: '#725043',
     lightBrown: '#aca488',
     white: '#ffffff',
+    red: '#e94242',
   },
   font: properUnit(sizes, 'em'),
   spacing: properUnit(sizes, 'rem'),
