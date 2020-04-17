@@ -1,18 +1,34 @@
 // == Initial State
 const initialState = {
-  message: 'Hello',
+  firstname: '',
+  signUpEmail: '',
+  signUpPassword: '',
+  signUpConfirmPwd: '',
+  signInEmail: '',
+  signInPassword: '',
 };
 
 // == Types
-const DO_SOMETHING = 'DO_SOMETHING';
+const VALUE_CHANGED = 'VALUE_CHANGED';
+const SIGNUP_FORM_SUBMITTED = 'SIGNUP_FORM_SUBMITTED';
 
 // == Reducer
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
-    case DO_SOMETHING:
+    case VALUE_CHANGED:
       return {
         ...state,
-        message: action.message,
+        [action.name]: action.value,
+      };
+    case SIGNUP_FORM_SUBMITTED:
+      return {
+        ...state,
+        firstname: '',
+        signUpEmail: '',
+        signUpPassword: '',
+        signUpConfirmPwd: '',
+        signInEmail: '',
+        signInPassword: '',
       };
 
     default:
@@ -21,12 +37,15 @@ const reducer = (state = initialState, action = {}) => {
 };
 
 // == Action Creators
-export const doSomething = message => ({
-  type: DO_SOMETHING,
-  message,
+export const valueChanged = (name, value) => ({
+  type: VALUE_CHANGED,
+  name,
+  value,
 });
 
-
+export const signUpFormSubmitted = () => ({
+  type: SIGNUP_FORM_SUBMITTED,
+});
 // == Selectors
 
 
