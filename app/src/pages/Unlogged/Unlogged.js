@@ -1,5 +1,5 @@
-import styled from 'styled-components'
-import { SCREEN } from '../../styles/theme'
+import styled from 'styled-components';
+import { SCREEN } from '../../styles/theme';
 
 
 export const Container = styled.div`
