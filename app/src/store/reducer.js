@@ -11,7 +11,9 @@ const initialState = {
 
 // == Types
 const VALUE_CHANGED = 'VALUE_CHANGED';
-const SIGNUP_FORM_SUBMITTED = 'SIGNUP_FORM_SUBMITTED';
+export const USER_FORM_SUBMITTED = 'USER_FORM_SUBMITTED';
+const SIGNUP_SUCCESS = 'SIGNUP_SUCCESS';
+const SIGNUP_FAIL = 'SIGNUP_FAIL';
 
 // == Reducer
 const reducer = (state = initialState, action = {}) => {
@@ -21,7 +23,19 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         [action.name]: action.value,
       };
-    case SIGNUP_FORM_SUBMITTED:
+    case SIGNUP_SUCCESS:
+      return {
+        ...state,
+        registered: true,
+        registerFail: false,
+      };
+    case SIGNUP_FAIL:
+      return {
+        ...state,
+        registerFail: true,
+        registered: false,
+      };
+    case USER_FORM_SUBMITTED:
       return {
         ...state,
         firstname: '',
@@ -31,7 +45,6 @@ const reducer = (state = initialState, action = {}) => {
         signInEmail: '',
         signInPassword: '',
       };
-
     default:
       return state;
   }
@@ -44,8 +57,16 @@ export const valueChanged = (name, value) => ({
   value,
 });
 
-export const signUpFormSubmitted = () => ({
-  type: SIGNUP_FORM_SUBMITTED,
+export const userFormSubmitted = () => ({
+  type: USER_FORM_SUBMITTED,
+});
+
+export const signUpSuccess = () => ({
+  type: SIGNUP_SUCCESS,
+});
+
+export const signUpFail = () => ({
+  type: SIGNUP_FAIL,
 });
 // == Selectors
 

@@ -8,7 +8,7 @@ const Field = ({
   nameIdFor,
   title,
   value,
-  changeValue,
+  valueChanged,
   label,
   error,
   submission,
@@ -29,7 +29,7 @@ const Field = ({
 
   const handleChange = (event) => {
     const { name, value: inputValue } = event.target;
-    changeValue(name, inputValue);
+    valueChanged(name, inputValue);
   };
 
   return (

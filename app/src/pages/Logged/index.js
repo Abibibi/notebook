@@ -9,7 +9,7 @@ const thoughts = [
   'Je viens d\'écouter du Vivaldi... Je dois trouver un moyen de commencer le violon.',
 ];
 
-const Logged = ({ thought, changeValue }) => {
+const Logged = ({ thought, valueChanged }) => {
 
   useEffect(() => {
     document.title = 'Bienvenue - Notes';
@@ -17,7 +17,7 @@ const Logged = ({ thought, changeValue }) => {
 
   const handleChange = (event) => {
     const { name, value: inputValue } = event.target;
-    changeValue(name, inputValue);
+    valueChanged(name, inputValue);
   };
 
   return (
