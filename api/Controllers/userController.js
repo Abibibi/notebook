@@ -27,7 +27,7 @@ const signUp = async (req, res) => {
     await newUser.save();
 
     res.status(200).send({ successfullyRegistered: 'User has been successfully registered.' })
-}
+};
 
 
 const signIn = async (req, res) => {
@@ -42,45 +42,26 @@ const signIn = async (req, res) => {
     const passwordMatch = await bcrypt.compare(password, userRegistered.password);
 
     if (!passwordMatch) {
-        res.status(400).send({ noPasswordMatch: 'Password is wrong.' });
+        res.status(400).send({ noPasswordMatch: 'Wrong password.' });
     }
   
-    const [results] = await promisePool.query(
-        `SELECT * FROM users WHERE email = ? LIMIT 1`,
-        [email]
-    );
-    
-    const tryingUser = results[0];
-  
-    // if user has not signed up
-    if(!tryingUser) {
-      return res.status(400).send({ nonExistingUser: 'L\'utilisateur ne s\'est pas inscrit.' })
-    }
-    
-    else if
-    // if user's pwd matches the crypted one in DB
-    (await bcrypt.compare(password, tryingUser.password)) {
-      // user successfully signs in
-      // a session is created with all the info needed as long as the user is logged
-      const sessionUserInfo = {
-        id: tryingUser.id,
-        firstname: tryingUser.firstname,
-        email: tryingUser.email
-      }
-  
-      req.session.user = sessionUserInfo;
-  
-      // session info is sent to client
-      return res.json(sessionUserInfo);
-    } 
-  
-    // if user's pwd does not match the crypted one in DB
-    else {
-      return res.status(400).send({ wrongPassword: 'L\'utilisateur n\'a pas renseigné le bon mot de passe.' })
-    }
-    
+    const token = jwt.sign(
+        { id: userRegistered.id },
+        process.env.JWT_SECRET,
+        { expiresIn: '3h' }
+    )
+
+    res.status(200).json({
+        token,
+        user: {
+            id: userRegistered.id,
+            firstname: userRegistered.firstname,
+            email: userRegistered.email
+        }
+    }); 
 };
 
 module.exports = {
-    signUp
+    signUp,
+    signIn
 }
