@@ -4,11 +4,15 @@ const router = new Router();
 
 // Controllers
 const {
+    authUserInfo,
     signUp,
+    signIn
 } = require('../Controllers/userController');
 
 // to sign up
+router.get('/info', authUserInfo);
 router.post('/add', signUp);
+router.post('/login', signIn);
 
 // router exported to create related API in app.js which will be made available to the client 
 module.exports = router;
