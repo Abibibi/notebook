@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { SCREEN } from '../../styles/theme'
 
 
-export const FieldWrapper = styled.div`
+const FieldWrapper = styled.div`
   width: 100%;
   margin-bottom: 4vh;
   ${SCREEN.DESKTOP} {
@@ -45,7 +45,7 @@ export const FieldWrapper = styled.div`
     font-weight: 600;
     text-transform: uppercase;
     display: block;
-    color: ${({ theme }) => theme.color.gray};
+    color: ${({ theme }) => theme.color.brown};
   }
 
   .lower {
@@ -69,4 +69,6 @@ export const FieldWrapper = styled.div`
       transform: translateY(-2vh);
     }
   }
-`
+`;
+
+export default FieldWrapper;

@@ -9,7 +9,7 @@ display: flex;
 justify-content: center;
 align-items: center;
 background-color: ${({ theme }) => theme.color.white};
-`
+`;
 
 export const Blocks = styled.div`
   height: 80%;
@@ -77,7 +77,8 @@ export const First = styled.div`
     }
   }
   
-`
+`;
+
 export const Second = styled.div`
   height: 50%;
   width: 100%;
@@ -105,5 +106,4 @@ export const Second = styled.div`
       align-self: flex-start;
     }
   }
-`
-
+`;
