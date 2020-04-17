@@ -25,8 +25,11 @@ const LoggedWrapper = styled.div`
     }
 
     label {
-      font-size: ${({ theme }) => theme.font.M};
+      font-size: 3.5vh;
       font-weight: 600;
+      ${SCREEN.DESKTOP} {
+        font-size: 4vh;
+      }
     }
   
     textarea {
@@ -81,7 +84,11 @@ const LoggedWrapper = styled.div`
   }
 
   h3 {
+    font-size: 3.5vh;
     font-weight: 600;
+    ${SCREEN.DESKTOP} {
+      font-size: 4vh;
+    }
     margin: 5vh 0 3vh;
   }
 

@@ -8,7 +8,7 @@ import {
 // == Import : local
 import './app.scss';
 import Unlogged from 'src/pages/Unlogged';
-import Logged from 'src/pages/Logged';
+import Logged from 'src/containers/Logged';
 
 // == Composant
 const App = () => {

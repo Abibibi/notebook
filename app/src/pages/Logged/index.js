@@ -9,11 +9,16 @@ const thoughts = [
   'Je viens d\'écouter du Vivaldi... Je dois trouver un moyen de commencer le violon.',
 ];
 
-const Logged = () => {
+const Logged = ({ thought, changeValue }) => {
 
   useEffect(() => {
     document.title = 'Bienvenue - Notes';
   });
+
+  const handleChange = (event) => {
+    const { name, value: inputValue } = event.target;
+    changeValue(name, inputValue);
+  };
 
   return (
     <>
@@ -26,14 +31,16 @@ const Logged = () => {
             name="thought"
             title="Veuillez saisir votre idée"
             placeholder="Et si je me remettais à la peinture..."
+            value={thought}
+            onChange={handleChange}
           />
-          <button>Sauvegarder</button>
+          <button type="submit">Sauvegarder</button>
         </form>
         <h3>Idées précédentes</h3>
         <ol>
-          {thoughts.map((thought) => {
+          {thoughts.map((singleThought) => {
             return (
-              <li>{thought}</li>
+              <li>{singleThought}</li>
             );
           })}
         </ol>
