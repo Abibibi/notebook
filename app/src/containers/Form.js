@@ -1,11 +1,11 @@
 // == Import : npm
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
 // == Import : local
 import Form from 'src/components/Form';
 
 // Action Creators
-import { doSomething } from 'src/store/reducer';
 
 /* === State (données) ===
  * - mapStateToProps retroune un objet de props pour le composant de présentation
@@ -20,7 +20,7 @@ const mapStateToProps = (state, ownProps) => ({
   signUpPassword: state.signUpPassword,
   signUpConfirmPwd: state.signUpConfirmPwd,
   signInEmail: state.signInEmail,
-  signInPassword: state.signInPassword
+  signInPassword: state.signInPassword,
 });
 
 /* === Actions ===
@@ -30,17 +30,13 @@ const mapStateToProps = (state, ownProps) => ({
  *  - ownProps : les props passées au container
  * Pas de disptach à transmettre ? const mapDispatchToProps = {};
  */
-const mapDispatchToProps = (dispatch, ownProps) => ({
-  doSomething: () => {
-    dispatch(doSomething('Coucou'));
-  },
-});
+const mapDispatchToProps = {};
 
 // Container
-const FormContainer = connect(
+const FormContainer = withRouter(connect(
   mapStateToProps,
   mapDispatchToProps,
-)(Form);
+)(Form));
 
 // == Export
 export default FormContainer;
