@@ -27,6 +27,9 @@ const Form = ({
     signUpConfirmPwd: false,
   });
 
+  const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+  const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
+
   useEffect(() => {
     setIsFormSignin(window.location.pathname === '/connexion');
     setButtonText(window.location.pathname === '/connexion' ? 'Se connecter' : 'S\'inscrire');
@@ -40,17 +43,33 @@ const Form = ({
     // should not be displayed anymore initially
     setSubmission(true);
 
-    setErrors((err) => ({ ...err, firstname: !firstname && !isFormSignin }));
-    setErrors((err) => ({ ...err, signUpEmail: !isFormSignin && (!signUpEmail || !signUpEmail.match(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) }));
-    setErrors((err) => ({ ...err, signUpPassword: !isFormSignin && (!signUpPassword || !signUpPassword.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/)) }));
-    setErrors((err) => ({ ...err, signUpConfirmPwd: !isFormSignin && (!signUpConfirmPwd || signUpPassword !== signUpConfirmPwd) }));
-    setErrors((err) => ({ ...err, signInEmail: isFormSignin && (!signInEmail || !signInEmail.match(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) }));
-    setErrors((err) => ({ ...err, signInPassword: isFormSignin && !signInPassword }));
+    // errors on sign up page
+    if (!isFormSignin) {
+      if (!firstname
+        || (!signUpEmail || !signUpEmail.match(emailRegex))
+        || (!signUpPassword || !signUpPassword.match(passwordRegex))
+        || (!signUpConfirmPwd || signUpPassword !== signUpConfirmPwd)) {
 
-    if (errors.signInEmail || errors.signInPassword || errors.firstname || errors.signUpEmail || errors.signUpPassword || errors.signUpConfirmPwd) {
-      return
+        setErrors((err) => ({ ...err, firstname: !firstname }));
+        setErrors((err) => ({ ...err, signUpEmail: !signUpEmail || !signUpEmail.match(emailRegex) }));
+        setErrors((err) => ({ ...err, signUpPassword: !signUpPassword || !signUpPassword.match(passwordRegex) }));
+        setErrors((err) => ({ ...err, signUpConfirmPwd: !signUpConfirmPwd || signUpPassword !== signUpConfirmPwd }));
+        return;
+      }
+    }
+    
+    // errors on sign in page
+    if (isFormSignin) {
+      if ((!signInEmail || !signInEmail.match(emailRegex))
+      || (!signInPassword)) {
+
+        setErrors((err) => ({ ...err, signInEmail: !signInEmail || !signInEmail.match(emailRegex) }));
+        setErrors((err) => ({ ...err, signInPassword: !signInPassword }));
+        return;
+      }
     }
 
+    // if no error, emitting Ajax call to backend API
     formSubmitted()
   };
 

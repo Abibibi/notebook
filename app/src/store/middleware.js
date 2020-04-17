@@ -4,7 +4,10 @@ import {
   USER_FORM_SUBMITTED,
   signUpSuccess,
   signUpFail,
+  signInSuccess,
+  signInFail,
 } from 'src/store/reducer';
+
 
 const middleware = (store) => (next) => (action) => {
   switch (action.type) {
@@ -28,18 +31,20 @@ const middleware = (store) => (next) => (action) => {
         confirmPassword: signup ? signUpConfirmPwd : '',
       };
 
-      const API_URI = signup ? 'http://localhost:5000/users/add' : 'http://localhost:5000/users/login'
-
-      axios.post(API_URI, user)
+      const API_URI = signup ? 'add' : 'login';
+      console.log(API_URI);
+      console.log(signup);
+      console.log(user);
+      axios.post(`http://localhost:5000/users/${API_URI}`, user)
         .then((response) => {
           console.log(response);
 
-          store.dispatch(signUpSuccess());
+          store.dispatch(signup ? signUpSuccess() : signInSuccess(response.data.user));
         })
         .catch((error) => {
-          console.log('error', error);
+          console.log('error', error.response.data);
 
-          store.dispatch(signUpFail());
+          store.dispatch(signup ? signUpFail() : signInFail());
         });
 
       next(action);
