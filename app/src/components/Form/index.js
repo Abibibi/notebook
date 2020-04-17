@@ -11,8 +11,7 @@ const Form = ({
   signUpPassword,
   signUpConfirmPwd,
   signInEmail,
-  signInPassword,
-  formSubmitted,
+  signInPassword
 }) => {
   const [isFormSignin, setIsFormSignin] = useState(false);
   const [buttonText, setButtonText] = useState('');
@@ -46,8 +45,6 @@ const Form = ({
     setErrors((err) => ({ ...err, signUpConfirmPwd: !isFormSignin && (!signUpConfirmPwd || signUpPassword !== signUpConfirmPwd) }));
     setErrors((err) => ({ ...err, signInEmail: isFormSignin && (!signInEmail || !signInEmail.match(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) }));
     setErrors((err) => ({ ...err, signInPassword: isFormSignin && !signInPassword }));
-
-    formSubmitted();
   };
 
   return (

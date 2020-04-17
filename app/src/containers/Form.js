@@ -6,7 +6,6 @@ import { withRouter } from 'react-router-dom';
 import Form from 'src/components/Form';
 
 // Action Creators
-import { signUpFormSubmitted } from 'src/store/reducer';
 
 const mapStateToProps = (state, ownProps) => ({
   firstname: state.firstname,
@@ -17,11 +16,7 @@ const mapStateToProps = (state, ownProps) => ({
   signInPassword: state.signInPassword,
 });
 
-const mapDispatchToProps = (dispatch, ownProps) => ({
-  formSubmitted: () => {
-    dispatch(signUpFormSubmitted());
-  },
-});
+const mapDispatchToProps = {};
 
 // Container
 const FormContainer = withRouter(connect(
