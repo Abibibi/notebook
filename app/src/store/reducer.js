@@ -6,6 +6,7 @@ const initialState = {
   signUpConfirmPwd: '',
   signInEmail: '',
   signInPassword: '',
+  thought: '',
 };
 
 // == Types

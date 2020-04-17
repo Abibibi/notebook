@@ -7,16 +7,17 @@ import {
 
 // == Import : local
 import './app.scss';
-import Unlogged from 'src/pages/Unlogged'
+import Unlogged from 'src/pages/Unlogged';
+import Logged from 'src/containers/Logged';
 
 // == Composant
 const App = () => {
   useEffect(() => {
     setTimeout(() => {
-      const viewheight = window.innerHeight
-      const viewwidth = window.innerWidth
-      const viewport = document.querySelector('meta[name=viewport]')
-      viewport.setAttribute('content', `height=${viewheight}px, width=${viewwidth}px, initial-scale=1.0`)
+      const viewheight = window.innerHeight;
+      const viewwidth = window.innerWidth;
+      const viewport = document.querySelector('meta[name=viewport]');
+      viewport.setAttribute('content', `height=${viewheight}px, width=${viewwidth}px, initial-scale=1.0`);
     }, 300);
   }, []);
 
@@ -26,6 +27,11 @@ const App = () => {
         path={['/', '/inscription', '/connexion']}
         exact
         component={Unlogged}
+      />
+      <Route
+        path="/bienvenue"
+        exact
+        component={Logged}
       />
     </div>
   );
