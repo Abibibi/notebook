@@ -11,7 +11,7 @@ const Field = ({
   valueChanged,
   label,
   error,
-  submission,
+  submitted,
 }) => {
   const inputEl = useRef(null);
   const labelEl = useRef(null);
@@ -46,8 +46,8 @@ const Field = ({
         />
         <label htmlFor={nameIdFor} ref={labelEl}>{label}</label>
       </div>
-      {!error && !submission && nameIdFor === 'signUpPassword' && (<p>Le mot de passe doit comprendre au moins 8 caractères dont un chiffre, une minuscule, une majuscule et un caractère spécial.</p>)}
-      {!error && !submission && nameIdFor === 'signUpConfirmPwd' && (<p>Les deux mots de passe doivent correspondre.</p>)}
+      {!error && !submitted && nameIdFor === 'signUpPassword' && (<p>Le mot de passe doit comprendre au moins 8 caractères dont un chiffre, une minuscule, une majuscule et un caractère spécial.</p>)}
+      {!error && !submitted && nameIdFor === 'signUpConfirmPwd' && (<p>Les deux mots de passe doivent correspondre.</p>)}
       {error && nameIdFor === 'firstname' && (<p className="error">Veuillez saisir votre prénom.</p>)}
       {error && nameIdFor === 'signUpEmail' && (<p className="error">{value ? 'Veuillez saisir une adresse e-mail valide.' : 'Veuillez saisir une adresse e-mail.'}</p>)}
       {error && nameIdFor === 'signUpPassword' && (<p className="error">{value ? 'Veuillez saisir un mot de passe valide, à savoir de 8 charactères minimum, avec un chiffre, une minuscule, une majuscule et un caractère spécial.' : 'Veuillez saisir un mot de passe.'}</p>)}

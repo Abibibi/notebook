@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import { ThemeProvider } from 'styled-components'
 
 // == Import : local
-import App from 'src/components/App';
+import App from 'src/containers/App';
 import store from 'src/store';
 import theme from './styles/theme';
 

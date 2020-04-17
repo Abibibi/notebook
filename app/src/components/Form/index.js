@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 import Field from 'src/containers/Field';
 import FormWrapper from './Form';
@@ -12,11 +12,15 @@ const Form = ({
   signUpConfirmPwd,
   signInEmail,
   signInPassword,
-  formSubmitted
+  formSubmitted,
+  logged,
+  registered,
+  registerFail,
+  signedIn,
+  signInFail
 }) => {
   const [isFormSignin, setIsFormSignin] = useState(false);
   const [buttonText, setButtonText] = useState('');
-  const [submission, setSubmission] = useState(false);
 
   const [errors, setErrors] = useState({
     signInEmail: false,
@@ -27,6 +31,9 @@ const Form = ({
     signUpConfirmPwd: false,
   });
 
+  const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+  const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
+
   useEffect(() => {
     setIsFormSignin(window.location.pathname === '/connexion');
     setButtonText(window.location.pathname === '/connexion' ? 'Se connecter' : 'S\'inscrire');
@@ -34,23 +41,41 @@ const Form = ({
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
+    
     // if user submits form again,
     // previous submission message
     // should not be displayed anymore initially
-    setSubmission(true);
+    Object.values(errors).map((error) => {
+      setErrors(false);
+    })
 
-    setErrors((err) => ({ ...err, firstname: !firstname && !isFormSignin }));
-    setErrors((err) => ({ ...err, signUpEmail: !isFormSignin && (!signUpEmail || !signUpEmail.match(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) }));
-    setErrors((err) => ({ ...err, signUpPassword: !isFormSignin && (!signUpPassword || !signUpPassword.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/)) }));
-    setErrors((err) => ({ ...err, signUpConfirmPwd: !isFormSignin && (!signUpConfirmPwd || signUpPassword !== signUpConfirmPwd) }));
-    setErrors((err) => ({ ...err, signInEmail: isFormSignin && (!signInEmail || !signInEmail.match(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) }));
-    setErrors((err) => ({ ...err, signInPassword: isFormSignin && !signInPassword }));
+    // errors on sign up page
+    if (!isFormSignin) {
+      if (!firstname
+        || (!signUpEmail || !signUpEmail.match(emailRegex))
+        || (!signUpPassword || !signUpPassword.match(passwordRegex))
+        || (!signUpConfirmPwd || signUpPassword !== signUpConfirmPwd)) {
 
-    if (errors.signInEmail || errors.signInPassword || errors.firstname || errors.signUpEmail || errors.signUpPassword || errors.signUpConfirmPwd) {
-      return
+        setErrors((err) => ({ ...err, firstname: !firstname }));
+        setErrors((err) => ({ ...err, signUpEmail: !signUpEmail || !signUpEmail.match(emailRegex) }));
+        setErrors((err) => ({ ...err, signUpPassword: !signUpPassword || !signUpPassword.match(passwordRegex) }));
+        setErrors((err) => ({ ...err, signUpConfirmPwd: !signUpConfirmPwd || signUpPassword !== signUpConfirmPwd }));
+        return;
+      }
+    }
+    
+    // errors on sign in page
+    if (isFormSignin) {
+      if ((!signInEmail || !signInEmail.match(emailRegex))
+      || (!signInPassword)) {
+
+        setErrors((err) => ({ ...err, signInEmail: !signInEmail || !signInEmail.match(emailRegex) }));
+        setErrors((err) => ({ ...err, signInPassword: !signInPassword }));
+        return;
+      }
     }
 
+    // if no error, emitting Ajax call to backend API
     formSubmitted()
   };
 
@@ -84,7 +109,6 @@ const Form = ({
             label="Mot de passe"
             value={signUpPassword}
             error={errors.signUpPassword}
-            submission={submission}
           />
           <Field
             type="password"
@@ -93,7 +117,6 @@ const Form = ({
             label="Confirmation du mot de passe"
             value={signUpConfirmPwd}
             error={errors.signUpConfirmPwd}
-            submission={submission}
           />
         </>
       )}
@@ -119,8 +142,16 @@ const Form = ({
         </>
       )}
       <button type="submit">{buttonText}</button>
+      
       {!isFormSignin && <Link to="/connexion">Déjà inscrit-e ? Connectez-vous</Link>}
       {isFormSignin && <Link to="/inscription">Pas encore membre ? Inscrivez-vous</Link>}
+      
+      {!isFormSignin && (registered && !registerFail) && (<div className="response success">Inscription effectée</div>)}
+      {!isFormSignin && (registerFail && !registered) && (<div className="response fail">Inscription invalide</div>)}
+      {isFormSignin && (signedIn && !signInFail) && (<div className="response success">Connexion réussie</div>)}
+      {isFormSignin && (signInFail && !signedIn) && (<div className="response fail">Connexion échouée</div>)}
+      
+      {logged && <Redirect to="/bienvenue" />}
     </FormWrapper>
   );
 };

@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import {
   Route,
   withRouter,
+  Redirect
 } from 'react-router-dom';
 
 // == Import : local
@@ -11,8 +12,9 @@ import Unlogged from 'src/pages/Unlogged';
 import Logged from 'src/containers/Logged';
 
 // == Composant
-const App = () => {
+const App = ({ logged }) => {
   useEffect(() => {
+    // to avoid resizing (due to vh / vw) on mobile, especially on forms
     setTimeout(() => {
       const viewheight = window.innerHeight;
       const viewwidth = window.innerWidth;
@@ -23,16 +25,18 @@ const App = () => {
 
   return (
     <div id="app">
-      <Route
+      {<Route
         path={['/', '/inscription', '/connexion']}
         exact
         component={Unlogged}
-      />
-      <Route
+      />}
+      {logged && <Route
         path="/bienvenue"
         exact
         component={Logged}
-      />
+      />}
+      {!logged && window.location.pathname === '/bienvenue' && (<Redirect to="/" />)}
+      {logged && window.location.pathname !== '/connexion' && (<Redirect to="/bienvenue" />)}
     </div>
   );
 };

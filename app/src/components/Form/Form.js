@@ -40,6 +40,20 @@ const FormWrapper = styled.form`
     text-decoration: underline;
   }
 
+  .response {
+    padding: 3vh;
+    margin-top: 5vh;
+    color: ${({ theme }) => theme.color.white};
+  }
+
+  .success {
+    background: ${({ theme }) => theme.color.successGreen};
+  }
+
+  .fail {
+    background: ${({ theme }) => theme.color.red};
+  }
+
   ${SCREEN.DESKTOP} {
     a {
       align-self: self-start;

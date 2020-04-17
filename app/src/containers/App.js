@@ -2,10 +2,10 @@
 import { connect } from 'react-redux';
 
 // == Import : local
-import Field from 'src/components/Field';
+import App from 'src/components/App';
 
 // Action Creators
-import { valueChanged } from 'src/store/reducer';
+/* import { } from 'src/store/reducer'; */
 
 /* === State (données) ===
  * - mapStateToProps retroune un objet de props pour le composant de présentation
@@ -15,13 +15,7 @@ import { valueChanged } from 'src/store/reducer';
  * Pas de data à transmettre ? const mapStateToProps = null;
  */
 const mapStateToProps = (state, ownProps) => ({
-  type: ownProps.type,
-  nameIdFor: ownProps.nameIdFor,
-  title: ownProps.title,
-  label: ownProps.label,
-  value: ownProps.value,
-  error: ownProps.error,
-  submitted: state.submitted,
+  logged: state.logged,
 });
 
 /* === Actions ===
@@ -31,20 +25,16 @@ const mapStateToProps = (state, ownProps) => ({
  *  - ownProps : les props passées au container
  * Pas de disptach à transmettre ? const mapDispatchToProps = {};
  */
-const mapDispatchToProps = (dispatch, ownProps) => ({
-  valueChanged: (name, value) => {
-    dispatch(valueChanged(name, value));
-  },
-});
+const mapDispatchToProps = {};
 
 // Container
-const FieldContainer = connect(
+const AppContainer = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(Field);
+)(App);
 
 // == Export
-export default FieldContainer;
+export default AppContainer;
 
 /* = export à la volée
 export default connect(

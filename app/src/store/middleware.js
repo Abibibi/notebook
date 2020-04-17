@@ -4,12 +4,14 @@ import {
   USER_FORM_SUBMITTED,
   signUpSuccess,
   signUpFail,
+  signInSuccess,
+  signInFail,
 } from 'src/store/reducer';
+
 
 const middleware = (store) => (next) => (action) => {
   switch (action.type) {
     case USER_FORM_SUBMITTED: {
-      console.log('dans le middleware')
       const {
         firstname,
         signUpEmail,
@@ -28,19 +30,19 @@ const middleware = (store) => (next) => (action) => {
         confirmPassword: signup ? signUpConfirmPwd : '',
       };
 
-      const API_URI = signup ? 'http://localhost:5000/users/add' : 'http://localhost:5000/users/login'
-
-      axios.post(API_URI, user)
+      const API_URI = signup ? 'add' : 'login';
+      axios.post(`http://localhost:5000/users/${API_URI}`, user)
         .then((response) => {
-          console.log(response);
+          store.dispatch(signup ? signUpSuccess() : signInSuccess(response.data));
 
-          store.dispatch(signUpSuccess());
         })
-        .catch((error) => {
-          console.log('error', error);
+        .catch(() => {
+          store.dispatch(signup ? signUpFail() : signInFail());
 
-          store.dispatch(signUpFail());
-        });
+        })
+        .finally(() => {
+          window.scrollTo(0, document.body.scrollHeight || document.documentElement.scrollHeight);
+        })
 
       next(action);
       break;
