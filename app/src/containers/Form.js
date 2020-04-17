@@ -16,6 +16,12 @@ const mapStateToProps = (state, ownProps) => ({
   signUpConfirmPwd: state.signUpConfirmPwd,
   signInEmail: state.signInEmail,
   signInPassword: state.signInPassword,
+  logged: state.logged,
+  registered: state.registered,
+  registerFail : state.registerFail,
+  signedIn: state.signedIn,
+  signInFail: state.signInFail,
+  submitted: state.submitted,
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({

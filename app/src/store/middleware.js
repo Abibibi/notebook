@@ -12,7 +12,6 @@ import {
 const middleware = (store) => (next) => (action) => {
   switch (action.type) {
     case USER_FORM_SUBMITTED: {
-      console.log('dans le middleware')
       const {
         firstname,
         signUpEmail,
@@ -32,20 +31,18 @@ const middleware = (store) => (next) => (action) => {
       };
 
       const API_URI = signup ? 'add' : 'login';
-      console.log(API_URI);
-      console.log(signup);
-      console.log(user);
       axios.post(`http://localhost:5000/users/${API_URI}`, user)
         .then((response) => {
-          console.log(response);
+          store.dispatch(signup ? signUpSuccess() : signInSuccess(response.data));
 
-          store.dispatch(signup ? signUpSuccess() : signInSuccess(response.data.user));
         })
-        .catch((error) => {
-          console.log('error', error.response.data);
-
+        .catch(() => {
           store.dispatch(signup ? signUpFail() : signInFail());
-        });
+
+        })
+        .finally(() => {
+          window.scrollTo(0, document.body.scrollHeight || document.documentElement.scrollHeight);
+        })
 
       next(action);
       break;

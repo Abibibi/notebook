@@ -6,6 +6,7 @@ const initialState = {
   signUpConfirmPwd: '',
   signInEmail: '',
   signInPassword: '',
+  submitted: false,
   thought: '',
 };
 
@@ -24,18 +25,27 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         [action.name]: action.value,
+        registered: false,
+        registerFail: false,
+        signedIn: false,
+        signInFail: false,
+        submitted: false,
       };
     case SIGNUP_SUCCESS:
       return {
         ...state,
         registered: true,
         registerFail: false,
+        signedIn: false,
+        signInFail: false,
       };
     case SIGNUP_FAIL:
       return {
         ...state,
         registerFail: true,
         registered: false,
+        signedIn: false,
+        signInFail: false,
       };
     case SIGNIN_SUCCESS:
       return {
@@ -43,19 +53,25 @@ const reducer = (state = initialState, action = {}) => {
         logged: true,
         signedIn: true,
         signInFail: false,
-        sessionUserId: action.userSessionData.id,
-        sessionUserFirstname: action.userSessionData.firstname,
-        sessionUserEmail: action.userSessionData.email,
+        token: action.userSessionData.token,
+        sessionUserId: action.userSessionData.user.id,
+        sessionUserFirstname: action.userSessionData.user.firstname,
+        sessionUserEmail: action.userSessionData.user.email,
+        registerFail: false,
+        registered: false,
       };
     case SIGNIN_FAIL:
       return {
         ...state,
         signInFail: true,
         signedIn: false,
+        registerFail: false,
+        registered: false,
       };
     case USER_FORM_SUBMITTED:
       return {
         ...state,
+        submitted: true,
         firstname: '',
         signUpEmail: '',
         signUpPassword: '',

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 import Field from 'src/containers/Field';
 import FormWrapper from './Form';
@@ -12,11 +12,15 @@ const Form = ({
   signUpConfirmPwd,
   signInEmail,
   signInPassword,
-  formSubmitted
+  formSubmitted,
+  logged,
+  registered,
+  registerFail,
+  signedIn,
+  signInFail
 }) => {
   const [isFormSignin, setIsFormSignin] = useState(false);
   const [buttonText, setButtonText] = useState('');
-  const [submission, setSubmission] = useState(false);
 
   const [errors, setErrors] = useState({
     signInEmail: false,
@@ -37,11 +41,13 @@ const Form = ({
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
+    
     // if user submits form again,
     // previous submission message
     // should not be displayed anymore initially
-    setSubmission(true);
+    Object.values(errors).map((error) => {
+      setErrors(false);
+    })
 
     // errors on sign up page
     if (!isFormSignin) {
@@ -103,7 +109,6 @@ const Form = ({
             label="Mot de passe"
             value={signUpPassword}
             error={errors.signUpPassword}
-            submission={submission}
           />
           <Field
             type="password"
@@ -112,7 +117,6 @@ const Form = ({
             label="Confirmation du mot de passe"
             value={signUpConfirmPwd}
             error={errors.signUpConfirmPwd}
-            submission={submission}
           />
         </>
       )}
@@ -138,8 +142,16 @@ const Form = ({
         </>
       )}
       <button type="submit">{buttonText}</button>
+      
       {!isFormSignin && <Link to="/connexion">Déjà inscrit-e ? Connectez-vous</Link>}
       {isFormSignin && <Link to="/inscription">Pas encore membre ? Inscrivez-vous</Link>}
+      
+      {!isFormSignin && (registered && !registerFail) && (<div className="response success">Inscription effectée</div>)}
+      {!isFormSignin && (registerFail && !registered) && (<div className="response fail">Inscription invalide</div>)}
+      {isFormSignin && (signedIn && !signInFail) && (<div className="response success">Connexion réussie</div>)}
+      {isFormSignin && (signInFail && !signedIn) && (<div className="response fail">Connexion échouée</div>)}
+      
+      {logged && <Redirect to="/bienvenue" />}
     </FormWrapper>
   );
 };
