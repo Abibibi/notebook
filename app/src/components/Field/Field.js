@@ -45,6 +45,7 @@ export const FieldWrapper = styled.div`
     font-weight: 600;
     text-transform: uppercase;
     display: block;
+    color: ${({ theme }) => theme.color.gray};
   }
 
   .lower {
@@ -62,10 +63,10 @@ export const FieldWrapper = styled.div`
 
   @keyframes label {
     0% {
-      transform: translateY(0)
+      transform: translateY(0);
     }
     100% {
-      transform: translateY(-2vh)
+      transform: translateY(-2vh);
     }
   }
 `
