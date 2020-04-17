@@ -50,7 +50,7 @@ const Field = ({
       {!error && !submission && nameIdFor === 'signUpConfirmPwd' && (<p>Les deux mots de passe doivent correspondre.</p>)}
       {error && nameIdFor === 'firstname' && (<p className="error">Veuillez saisir votre prénom.</p>)}
       {error && nameIdFor === 'signUpEmail' && (<p className="error">{value ? 'Veuillez saisir une adresse e-mail valide.' : 'Veuillez saisir une adresse e-mail.'}</p>)}
-      {error && nameIdFor === 'signUpPassword' && (<p className="error">{value ? 'Veuillez saisir un mot de passe valide.' : 'Veuillez saisir un mot de passe.'}</p>)}
+      {error && nameIdFor === 'signUpPassword' && (<p className="error">{value ? 'Veuillez saisir un mot de passe valide, à savoir de 8 charactères minimum, avec un chiffre, une minuscule, une majuscule et un caractère spécial.' : 'Veuillez saisir un mot de passe.'}</p>)}
       {error && nameIdFor === 'signUpConfirmPwd' && (<p className="error">{value ? 'Les mots de passe ne correspondent pas.' : 'Veuillez confirmer votre mot de passe.'}</p>)}
       {error && nameIdFor === 'signInEmail' && (<p className="error">{value ? 'Veuillez saisir une adresse e-mail valide.' : 'Veuillez saisir votre adresse e-mail.'}</p>)}
       {error && nameIdFor === 'signInPassword' && (<p className="error">Veuillez saisir votre mot de passe.</p>)}
