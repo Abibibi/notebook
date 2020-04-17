@@ -26,7 +26,7 @@ const mapStateToProps = (state, ownProps) => ({
  * Pas de disptach à transmettre ? const mapDispatchToProps = {};
  */
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  changeValue: (name, value) => {
+  valueChanged: (name, value) => {
     dispatch(valueChanged(name, value));
   },
 });

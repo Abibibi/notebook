@@ -29,6 +29,7 @@ const LoggedWrapper = styled.div`
       font-weight: 600;
       ${SCREEN.DESKTOP} {
         font-size: 4vh;
+        margin-top: 3vh;
       }
     }
   
