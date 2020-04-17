@@ -2,6 +2,18 @@ const User = require('../Models/User');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
+//  
+const authUserInfo = async (req, res) => {
+    // user id is available in req.user
+    // thanks to authMiddleware,
+    // in which req.user value was defined as the decoded token (thus, the user id)
+    const authenticatedUserInfo = await User.findById(req.user.id)
+    // excluding user password from the info sent to client
+    .select('-password')
+
+    res.status(200).json(authenticatedUserInfo);
+};
+
 
 const signUp = async (req, res) => {
     let { firstname, email, password, confirmPassword } = req.body;
@@ -62,6 +74,7 @@ const signIn = async (req, res) => {
 };
 
 module.exports = {
+    authUserInfo,
     signUp,
     signIn
 }
