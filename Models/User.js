@@ -16,9 +16,9 @@ const UserSchema = new Schema({
       type: String,
       required: true
     },
-    thougths: [{
+    thoughts: [{
       type: Schema.Types.ObjectId,
-      ref: 'Thought'
+      ref: 'thought'
     }],
     register_date: {
       type: Date,
