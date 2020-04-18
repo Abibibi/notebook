@@ -55,7 +55,7 @@ const middleware = (store) => (next) => (action) => {
       };
 
       const API_URI = signup ? 'add' : 'login';
-      axios.post(`${process.env.API}/users/${API_URI}`, user)
+      axios.post(`${process.env.API}/users/${API_URI}`, user, { withCredentials: true })
         .then((response) => {
           store.dispatch(signup ? signUpSuccess() : signInSuccess(response.data));
 
