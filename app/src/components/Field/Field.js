@@ -16,14 +16,14 @@ const FieldWrapper = styled.div`
     input {
       color: ${({ theme }) => theme.color.gray};
       width: 100%;
-      border: ${({ theme }) => theme.color.lightBrown} solid .1vh;
+      border: ${({ theme }) => theme.color.lightGray} solid .1vh;
       padding: 1.5vh;
       font-size: 2vh;
     }
   
     label {
       position: absolute;
-      color: ${({ theme }) => theme.color.lightBrown};
+      color: ${({ theme }) => theme.color.lightGray};
       font-size: 2vh;
       top: 50%;
       left: 1.5vh;
@@ -45,7 +45,7 @@ const FieldWrapper = styled.div`
     font-weight: 600;
     text-transform: uppercase;
     display: block;
-    color: ${({ theme }) => theme.color.brown};
+    color: ${({ theme }) => theme.color.gray};
   }
 
   .lower {
@@ -59,6 +59,7 @@ const FieldWrapper = styled.div`
     styles are kept as such one animation
     is done */
     animation-fill-mode: forwards;
+    color: ${({ theme }) => theme.color.seafoam};
   }
 
   @keyframes label {

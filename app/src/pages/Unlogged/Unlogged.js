@@ -22,7 +22,7 @@ export const Blocks = styled.div`
 `
 
 export const First = styled.div`
-  background-color: ${({ theme }) => theme.color.green};
+  background-color: ${({ theme }) => theme.color.seafoam};
   color: ${({ theme }) => theme.color.white};
   padding: ${({ theme }) => theme.spacing.XL};
   height: 14%;
@@ -82,7 +82,7 @@ export const First = styled.div`
 export const Second = styled.div`
   height: 50%;
   width: 100%;
-  color: ${({ theme }) => theme.color.brown};
+  color: ${({ theme }) => theme.color.gray};
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -97,7 +97,7 @@ export const Second = styled.div`
 
   h1 {
     font-size: 3.5vh;
-    color: ${({ theme }) => theme.color.brown};
+    color: ${({ theme }) => theme.color.gray};
     font-weight: 600;
     margin: 7vh 0 5vh;
 

@@ -3,7 +3,7 @@ import { SCREEN } from '../../styles/theme';
 
 
 const HeaderWrapper = styled.header`
-  background-color: ${({ theme }) => theme.color.green};
+  background-color: ${({ theme }) => theme.color.seafoam};
   color: ${({ theme }) => theme.color.white};
   padding: 3vh 2vh;
   width: 100vw;

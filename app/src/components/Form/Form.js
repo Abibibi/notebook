@@ -9,8 +9,8 @@ const FormWrapper = styled.form`
   width: 100%;
 
   button {
-    border: ${({ theme }) => theme.color.brown} solid .3vh;
-    background: ${({ theme }) => theme.color.brown};
+    border: ${({ theme }) => theme.color.seafoam} solid .3vh;
+    background: ${({ theme }) => theme.color.seafoam};
     color: ${({ theme }) => theme.color.white};
     font-weight: 600;
     padding: 1.5vh;
@@ -18,7 +18,7 @@ const FormWrapper = styled.form`
 
     &:hover {
       background: ${({ theme }) => theme.color.white};
-      color: ${({ theme }) => theme.color.brown};
+      color: ${({ theme }) => theme.color.gray};
     }
 
     &:active {
@@ -47,7 +47,7 @@ const FormWrapper = styled.form`
   }
 
   .success {
-    background: ${({ theme }) => theme.color.successGreen};
+    background: ${({ theme }) => theme.color.green};
   }
 
   .fail {

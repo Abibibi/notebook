@@ -27,17 +27,15 @@ const properUnit = (values, unit) => {
 
 export default {
   color: {
-    green: '#87A879',
-    pink: '#CF8854',
-    lightPink: '#F3E7C1',
-    borderPink: '#e7d8b6',
+    seafoam: '#419e95',
+    lightSeafoam: '#b0d2cf',
     gray: '#4f4e4e',
     brown: '#725043',
-    lightBrown: '#aca488',
-    mediumBrown: '#976c5b',
+    lightGray: '#bbbaba',
+    mediumGray: '#737373',
     white: '#ffffff',
     red: '#e94242',
-    successGreen: '#35b564',
+    green: '#35b564',
   },
   font: properUnit(sizes, 'em'),
   spacing: properUnit(sizes, 'rem'),
