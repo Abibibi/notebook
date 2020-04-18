@@ -9,7 +9,7 @@ module.exports = (req, res, next) => {
     }
 
     try {
-        const decoded = jwt.verify(token, config.get('jwtSecret'));
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
         // to be able to access user info from id contained in decoded, 
         // and send it to client when they use the app as already authenticated users

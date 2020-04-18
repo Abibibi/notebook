@@ -9,8 +9,10 @@ const {
     signIn
 } = require('../Controllers/userController');
 
+const authMiddleware = require('../utils/authMiddleware');
+
 // to sign up
-router.get('/info', authUserInfo);
+router.get('/info', authMiddleware, authUserInfo);
 router.post('/add', signUp);
 router.post('/login', signIn);
 
