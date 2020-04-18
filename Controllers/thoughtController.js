@@ -17,8 +17,6 @@ const addThought = async (req, res) => {
     await author.thoughts.push(thoughtAdded.id);
     await author.save();
 
-    console.log(author);
-
     res.status(200).json('New thought added to database');
 };
 
