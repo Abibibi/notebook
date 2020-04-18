@@ -17,7 +17,7 @@ const addThought = async (req, res) => {
     await author.thoughts.push(thoughtAdded.id);
     await author.save();
 
-    res.status(200).json('New thought added to database');
+    return res.status(200).json('New thought added to database');
 };
 
 
@@ -26,7 +26,7 @@ const allThoughts = async (req, res) => {
 
     const allThoughts = await Thought.find({ author: id })
 
-    res.status(200).json(allThoughts);
+    return res.status(200).json(allThoughts);
 };
 
 module.exports = {

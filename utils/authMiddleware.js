@@ -5,7 +5,7 @@ module.exports = (req, res, next) => {
     const token = req.header('x-auth-token');
 
     if (!token) {
-        res.status(401).json({ noToken: 'No token; user failed to provide authentication.' });
+        return res.status(401).json({ noToken: 'No token; user failed to provide authentication.' });
     }
 
     try {
@@ -17,7 +17,7 @@ module.exports = (req, res, next) => {
 
         next();
       } catch (error) {
-        res.status(400).json({ invalidToken: 'Token is not valid' });
+        return res.status(400).json({ invalidToken: 'Token is not valid' });
       }
 
 } 
