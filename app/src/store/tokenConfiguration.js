@@ -1,5 +1,6 @@
 export default (token) => {
   const config = {
+    withCredentials: true,
     headers: {
       'Content-type': 'application/json'
     }

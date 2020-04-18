@@ -7,7 +7,7 @@ const mongoose = require('mongoose');
 const app = express();
 
 // MIDDLEWARES FOR CORS AND JSON
-app.use(cors());
+app.use(cors({ origin: [process.env.CLIENT], credentials: true }));
 app.use(express.json());
 
 
