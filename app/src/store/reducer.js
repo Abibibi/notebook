@@ -12,7 +12,8 @@ const initialState = {
   signInEmail: '',
   signInPassword: '',
   submitted: false,
-  thought: '',
+  newThought: '',
+  /* thoughts: [] */
 };
 
 // == Types
@@ -25,6 +26,11 @@ const SIGNUP_SUCCESS = 'SIGNUP_SUCCESS';
 const SIGNUP_FAIL = 'SIGNUP_FAIL';
 const SIGNIN_SUCCESS = 'SIGNIN_SUCCESS';
 const SIGNIN_FAIL = 'SIGNIN_FAIL';
+
+export const THOUGHT_SUBMITTED = 'THOUGHT_SUBMITTED';
+const THOUGHT_ADDED = 'THOUGHT_ADDED';
+export const THOUGHTS_REQUIRED = 'THOUGHTS_REQUIRED';
+const THOUGHTS_FETCHED = 'THOUGHTS_FETCHED';
 
 // == Reducer
 const reducer = (state = initialState, action = {}) => {
@@ -112,6 +118,24 @@ const reducer = (state = initialState, action = {}) => {
         signInEmail: '',
         signInPassword: '',
       };
+    case THOUGHT_SUBMITTED:
+      return {
+        ...state,
+        newThought: '',
+      }
+    case THOUGHT_ADDED:
+      return {
+        ...state,
+        thoughts: [
+          ...state.thoughts,
+          action.thought,
+        ]
+      }
+    case THOUGHTS_FETCHED:
+      return {
+        ...state,
+        thoughts: action.thoughts,
+      }
     default:
       return state;
   }
@@ -157,6 +181,25 @@ export const signInSuccess = (userSessionData) => ({
 export const signInFail = () => ({
   type: SIGNIN_FAIL,
 });
+
+export const thoughtSubmitted = () => ({
+  type: THOUGHT_SUBMITTED
+});
+
+export const thoughtAdded = (thought) => ({
+  type: THOUGHT_ADDED,
+  thought,
+});
+
+export const thoughtsRequired = () => ({
+  type: THOUGHTS_REQUIRED,
+})
+
+export const thoughtsFetched = (thoughts) => ({
+  type: THOUGHTS_FETCHED,
+  thoughts,
+})
+
 // == Selectors
 
 

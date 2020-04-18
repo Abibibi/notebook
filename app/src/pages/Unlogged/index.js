@@ -23,7 +23,7 @@ const Unlogged = () => {
       <Blocks>
         <First>
           <h1><img src={logo} alt="Logo de Notes" /></h1>
-          <h2>Toutes vos idées, <span>à portée de clic</span></h2>
+          <h2>Toutes vos idées, <span>à portée de main</span></h2>
         </First>
         <Second>
           <h1>{formTitle}</h1>

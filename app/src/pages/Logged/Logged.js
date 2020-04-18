@@ -20,8 +20,10 @@ const LoggedWrapper = styled.div`
     flex-direction: column;
     align-items: center;
     width: 100%;
+    margin-top: 3vh;
     ${SCREEN.DESKTOP} {
       align-items: flex-start;
+      margin-top: inherit;
     }
 
     label {
@@ -33,13 +35,12 @@ const LoggedWrapper = styled.div`
       }
     }
   
-    textarea {
+    input {
       margin: 4vh 0;
       width: 100%;
       border: ${({ theme }) => theme.color.lightBrown} solid .1vh;
-      outline: none;
-      resize: none;
-      min-height: 20vh;
+      color: ${({ theme }) => theme.color.brown};
+      min-height: 4vh;
       padding: 2vh;
   
       ::-webkit-input-placeholder {
@@ -90,12 +91,26 @@ const LoggedWrapper = styled.div`
     ${SCREEN.DESKTOP} {
       font-size: 4vh;
     }
-    margin: 5vh 0 3vh;
+    margin: 8vh 0 5vh;
+  }
+
+  ul {
+    min-width: 100%;
+    ${SCREEN.TABLET} {
+      text-align: center;
+    }
   }
 
   li {
     margin-bottom: 2vh;
     font-size: 2.3vh;
+    color: ${({ theme }) => theme.color.mediumBrown};
+    border-top: ${({ theme }) => theme.color.borderPink} 1px solid;
+    padding-top: 1vh;
+  }
+
+  div {
+    color: ${({ theme }) => theme.color.mediumBrown};
   }
 `;
 
