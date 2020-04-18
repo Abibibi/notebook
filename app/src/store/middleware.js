@@ -1,6 +1,9 @@
 import axios from 'axios';
 
 import {
+  IS_USER_LOGGED,
+  userLogged,
+  failedAuth,
   USER_FORM_SUBMITTED,
   signUpSuccess,
   signUpFail,
@@ -8,9 +11,26 @@ import {
   signInFail,
 } from 'src/store/reducer';
 
+import tokenConfiguration from './tokenConfiguration';
+
 
 const middleware = (store) => (next) => (action) => {
   switch (action.type) {
+    case IS_USER_LOGGED: {
+      const { token } = store.getState();
+
+      axios.get('http://localhost:5000/users/info', tokenConfiguration(token))
+        .then((response) => {
+          store.dispatch(userLogged(response.data));
+        })
+        .catch((err) => {
+          console.log(err.response.data)
+          store.dispatch(failedAuth());
+        })
+      
+      next(action);
+      break;
+    }
     case USER_FORM_SUBMITTED: {
       const {
         firstname,
@@ -41,7 +61,7 @@ const middleware = (store) => (next) => (action) => {
 
         })
         .finally(() => {
-          window.scrollTo(0, document.body.scrollHeight || document.documentElement.scrollHeight);
+          window.scrollTo(0,9999);
         })
 
       next(action);
