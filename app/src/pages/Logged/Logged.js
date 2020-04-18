@@ -30,7 +30,7 @@ const LoggedWrapper = styled.div`
       font-size: 4vh;
       cursor: default;
       ${SCREEN.DESKTOP} {
-        font-size: 4vh;
+        font-size: 5vh;
         margin-top: 3vh;
       }
     }
