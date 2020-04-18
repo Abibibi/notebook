@@ -11,10 +11,9 @@ const {
 
 const authMiddleware = require('../utils/authMiddleware');
 
-// to sign up
+// to check logged status, and for sign up and sign in actions
 router.get('/info', authMiddleware, authUserInfo);
 router.post('/add', signUp);
 router.post('/login', signIn);
 
-// router exported to create related API in app.js which will be made available to the client 
 module.exports = router;

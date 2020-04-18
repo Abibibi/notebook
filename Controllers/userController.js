@@ -61,7 +61,7 @@ const signIn = async (req, res) => {
     const token = jwt.sign(
         { id: userRegistered.id },
         process.env.JWT_SECRET,
-        { expiresIn: 3600 }
+        { expiresIn: '24h' }
     )
 
     res.status(200).json({
