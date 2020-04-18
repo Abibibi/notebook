@@ -23,7 +23,7 @@ const middleware = (store) => (next) => (action) => {
   switch (action.type) {
     case IS_USER_LOGGED: {
 
-      axios.get('http://localhost:5000/users/info', tokenConfiguration(token))
+      axios.get(`${process.env.API}/users/info`, tokenConfiguration(token))
         .then((response) => {
           store.dispatch(userLogged(response.data));
         })
@@ -55,7 +55,7 @@ const middleware = (store) => (next) => (action) => {
       };
 
       const API_URI = signup ? 'add' : 'login';
-      axios.post(`http://localhost:5000/users/${API_URI}`, user)
+      axios.post(`${process.env.API}/users/${API_URI}`, user)
         .then((response) => {
           store.dispatch(signup ? signUpSuccess() : signInSuccess(response.data));
 
@@ -85,7 +85,7 @@ const middleware = (store) => (next) => (action) => {
         content: newThought
       };
 
-      axios.post('http://localhost:5000/thoughts/add', thoughtToAdd, tokenConfiguration(token))
+      axios.post(`${process.env.API}/thoughts/add`, thoughtToAdd, tokenConfiguration(token))
       .then((response)=> {
         store.dispatch(thoughtAdded(thoughtToAdd));
       })
@@ -97,7 +97,7 @@ const middleware = (store) => (next) => (action) => {
       break;
     }
     case THOUGHTS_REQUIRED: {
-      axios.get('http://localhost:5000/thoughts/all', tokenConfiguration(token))
+      axios.get(`${process.env.API}/thoughts/all`, tokenConfiguration(token))
       .then((response) => {
         console.log(response.data)
 
