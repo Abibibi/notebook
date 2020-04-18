@@ -5,7 +5,11 @@ import { connect } from 'react-redux';
 import Logged from 'src/pages/Logged';
 
 // Action Creators
-import { valueChanged } from 'src/store/reducer';
+import {
+  valueChanged,
+  thoughtSubmitted,
+  thoughtsRequired,
+} from 'src/store/reducer';
 
 /* === State (données) ===
  * - mapStateToProps retroune un objet de props pour le composant de présentation
@@ -15,7 +19,8 @@ import { valueChanged } from 'src/store/reducer';
  * Pas de data à transmettre ? const mapStateToProps = null;
  */
 const mapStateToProps = (state, ownProps) => ({
-  thought: state.thought,
+  newThought: state.newThought,
+  thoughts: state.thoughts,
 });
 
 /* === Actions ===
@@ -29,6 +34,12 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   valueChanged: (name, value) => {
     dispatch(valueChanged(name, value));
   },
+  thoughtPosted: () => {
+    dispatch(thoughtSubmitted());
+  },
+  thoughtsCaught: () => {
+    dispatch(thoughtsRequired());
+  }
 });
 
 // Container
@@ -40,9 +51,3 @@ const LoggedContainer = connect(
 // == Export
 export default LoggedContainer;
 
-/* = export à la volée
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(Example);
-*/

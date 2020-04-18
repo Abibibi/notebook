@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import logo from 'src/styles/assets/images/logo.svg';
 
@@ -9,9 +10,9 @@ const Header = () => {
   return (
     <HeaderWrapper>
       <h1>
-        <img src={logo} alt="Logo de Notes" />
+        <Link to="/bienvenue"><img src={logo} alt="Logo de Notes" /></Link>
       </h1>
-      <h2>Toutes vos idées, à portée de clic</h2>
+      <h2>Toutes vos idées, à portée de main</h2>
     </HeaderWrapper>
   );
 };

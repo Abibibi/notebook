@@ -20,12 +20,14 @@ How to run app locally
   * `cd app/`
   * `nvm use` to use proper Node version
   * `yarn`
+  * create .env file (see .env.config)
   * `yarn start`
 
 - Backend
   * `cd api/`
   * `nvm use` to use proper Node version
   * `yarn`
+  * create .env file (see .env.config)
   * `yarn dev` (to use nodemon)
   
 Language

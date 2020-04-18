@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Link, Route } from 'react-router-dom';
 
 import Field from 'src/containers/Field';
 import FormWrapper from './Form';
@@ -151,7 +151,7 @@ const Form = ({
       {isFormSignin && (signedIn && !signInFail) && (<div className="response success">Connexion réussie</div>)}
       {isFormSignin && (signInFail && !signedIn) && (<div className="response fail">Connexion échouée</div>)}
       
-      {logged && <Redirect to="/bienvenue" />}
+      {logged && <Route render={() => { window.location.pathname="/bienvenue"; return null; }} />}
     </FormWrapper>
   );
 };

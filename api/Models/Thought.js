@@ -4,8 +4,11 @@ const Schema = mongoose.Schema;
 
 const ThoughtSchema = new Schema({
     content: {
-      type: String,
-      required: true
+      type: String
+    },
+    author: {
+      type: Schema.Types.ObjectId,
+      ref: 'user'
     },
     date: {
       type: Date,

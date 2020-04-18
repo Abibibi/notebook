@@ -3,47 +3,63 @@ import React, { useEffect } from 'react';
 import Header from 'src/components/Header';
 import LoggedWrapper from './Logged';
 
-const thoughts = [
-  'Je dois contacter Cécile pour qu\'elle me donne son bon plan sport',
-  'Et si je me faisais un marathon Rougon-Macquart ?',
-  'Je viens d\'écouter du Vivaldi... Je dois trouver un moyen de commencer le violon.',
-];
 
-const Logged = ({ thought, valueChanged }) => {
+const Logged = ({
+  valueChanged,
+  newThought,
+  thoughtPosted,
+  thoughtsCaught, 
+  thoughts,
+}) => {
 
   useEffect(() => {
     document.title = 'Bienvenue - Notes';
   });
+
+  useEffect(() => {
+    thoughtsCaught()
+  }, []);
 
   const handleChange = (event) => {
     const { name, value: inputValue } = event.target;
     valueChanged(name, inputValue);
   };
 
+  const handleSubmit = (event) => {
+    console.log(thoughts);
+    event.preventDefault();
+    
+    if (!newThought) return;
+
+    thoughtPosted();
+  }
+
   return (
     <>
       <Header />
       <LoggedWrapper>
-        <form>
-          <label htmlFor="thought">Une idée ? C'est noté !</label>
-          <textarea
-            id="thought"
-            name="thought"
+        <form onSubmit={handleSubmit}>
+          <label htmlFor="newThought">Une idée ? C'est noté !</label>
+          <input
+            type="text"
+            id="newThought"
+            name="newThought"
             title="Veuillez saisir votre idée"
             placeholder="Et si je me remettais à la peinture..."
-            value={thought}
+            value={newThought}
             onChange={handleChange}
           />
           <button type="submit">Sauvegarder</button>
         </form>
-        <h3>Idées précédentes</h3>
-        <ol>
-          {thoughts.map((singleThought) => {
+        <h3>Idées sauvegardées</h3>
+        <ul>
+          {thoughts && thoughts.slice().reverse().map(({ _id, content }) => {
             return (
-              <li>{singleThought}</li>
+              <li key={_id}>{content}</li>
             );
           })}
-        </ol>
+        </ul>
+        {thoughts && !thoughts.length && (<div>Vos pensées sauvegardées apparaîtront ici.</div>)}
       </LoggedWrapper>
     </>
   );

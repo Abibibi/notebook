@@ -27,6 +27,7 @@ const App = ({
     // to know whether user is already logged when arriving on page,
     // and, if so, to retrieve the information proper to them (id, firstname, email)
     userStatus();
+
   }, []);
 
   return (

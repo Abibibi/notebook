@@ -16,6 +16,10 @@ const UserSchema = new Schema({
       type: String,
       required: true
     },
+    thoughts: [{
+      type: Schema.Types.ObjectId,
+      ref: 'thought'
+    }],
     register_date: {
       type: Date,
       default: Date.now
