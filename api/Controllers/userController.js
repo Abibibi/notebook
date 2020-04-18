@@ -11,21 +11,25 @@ const authUserInfo = async (req, res) => {
     // excluding user password from the info sent to client
     .select('-password')
 
-    res.status(200).json(authenticatedUserInfo);
+    return res.status(200).json(authenticatedUserInfo);
 };
 
 
 const signUp = async (req, res) => {
     let { firstname, email, password, confirmPassword } = req.body;
 
+    if (!firstname || !email || !password || !confirmPassword) {
+        return res.status(400).send({ missingInformation: 'User information is missing.' })
+    }
+
     if (password !== confirmPassword) {
-        res.status(400).send({ unequalPasswords: 'Passwords are not equal.' });
+        return res.status(400).send({ unequalPasswords: 'Passwords are not equal.' });
     }
 
     const existingUser = await User.findOne({ email });
 
     if (existingUser) {
-        res.status(400).send({ alreadySignedUp: 'User has already signed up.' });
+        return res.status(400).send({ alreadySignedUp: 'User has already signed up.' });
     }
 
     let hash = await bcrypt.hash(password, 10);
@@ -38,7 +42,7 @@ const signUp = async (req, res) => {
 
     await newUser.save();
 
-    res.status(200).send({ successfullyRegistered: 'User has been successfully registered.' })
+    return res.status(200).send({ successfullyRegistered: 'User has been successfully registered.' })
 };
 
 
@@ -49,13 +53,13 @@ const signIn = async (req, res) => {
     const userRegistered = await User.findOne({ email });
 
     if (!userRegistered) {
-        res.status(400).send({ notSignedUpYet: 'User is not registered.' });
+        return res.status(400).send({ notSignedUpYet: 'User is not registered.' });
     }
 
     const passwordMatch = await bcrypt.compare(password, userRegistered.password);
 
     if (!passwordMatch) {
-        res.status(400).send({ noPasswordMatch: 'Wrong password.' });
+        return res.status(400).send({ noPasswordMatch: 'Wrong password.' });
     }
   
     const token = jwt.sign(
@@ -64,7 +68,7 @@ const signIn = async (req, res) => {
         { expiresIn: '24h' }
     )
 
-    res.status(200).json({
+    return res.status(200).json({
         token,
         user: {
             id: userRegistered.id,
