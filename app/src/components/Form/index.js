@@ -101,6 +101,7 @@ const Form = ({
             label="E-mail"
             value={signUpEmail}
             error={errors.signUpEmail}
+            autocomplete={isFormSignin ? 'on' : 'off'}
           />
           <Field
             type="password"

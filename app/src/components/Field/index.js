@@ -11,6 +11,7 @@ const Field = ({
   valueChanged,
   label,
   error,
+  autocomplete,
   submitted,
 }) => {
   const inputEl = useRef(null);
@@ -40,6 +41,7 @@ const Field = ({
           name={nameIdFor}
           id={nameIdFor}
           title={title}
+          autoComplete={autocomplete}
           value={value}
           onChange={handleChange}
           ref={inputEl}
