@@ -1,5 +1,5 @@
 const Thought = require('../Models/Thought');
-
+const User = require('../Models/User');
 
 const addThought = async (req, res) => {
     const { content } = req.body;
@@ -10,7 +10,14 @@ const addThought = async (req, res) => {
         author: id
     });
 
-    await newThought.save();
+    const thoughtAdded = await newThought.save();
+
+    // to include new thought in author document
+    const author = await User.findOne({ _id: id });
+    await author.thoughts.push(thoughtAdded.id);
+    await author.save();
+
+    console.log(author);
 
     res.status(200).json('New thought added to database');
 };

@@ -8,7 +8,7 @@ const ThoughtSchema = new Schema({
     },
     author: {
       type: Schema.Types.ObjectId,
-      ref: 'User'
+      ref: 'user'
     },
     date: {
       type: Date,

@@ -28,7 +28,6 @@ const App = ({
     // and, if so, to retrieve the information proper to them (id, firstname, email)
     userStatus();
 
-    console.log(process.env)
   }, []);
 
   return (

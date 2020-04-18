@@ -41,6 +41,7 @@ const Logged = ({
         <form onSubmit={handleSubmit}>
           <label htmlFor="newThought">Une idée ? C'est noté !</label>
           <input
+            type="text"
             id="newThought"
             name="newThought"
             title="Veuillez saisir votre idée"

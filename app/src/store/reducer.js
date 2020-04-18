@@ -39,7 +39,7 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         logged: true,
-        loggedUserId: action.userSessionData.id,
+        loggedUserId: action.userSessionData._id,
         loggedUserFirstname: action.userSessionData.firstname,
         loggedUserEmail: action.userSessionData.email,
       };
@@ -87,7 +87,7 @@ const reducer = (state = initialState, action = {}) => {
         logged: true,
         signedIn: true,
         signInFail: false,
-        loggedUserId: action.userSessionData.user.id,
+        loggedUserId: action.userSessionData.user._id,
         loggedUserFirstname: action.userSessionData.user.firstname,
         loggedUserEmail: action.userSessionData.user.email,
         registerFail: false,

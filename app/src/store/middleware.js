@@ -60,7 +60,8 @@ const middleware = (store) => (next) => (action) => {
           store.dispatch(signup ? signUpSuccess() : signInSuccess(response.data));
 
         })
-        .catch(() => {
+        .catch((err) => {
+          console.log(err.response.data)
           store.dispatch(signup ? signUpFail() : signInFail());
 
         })
