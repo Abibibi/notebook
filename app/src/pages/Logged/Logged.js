@@ -29,6 +29,7 @@ const LoggedWrapper = styled.div`
     label {
       font-size: 3.5vh;
       font-weight: 600;
+      cursor: default;
       ${SCREEN.DESKTOP} {
         font-size: 4vh;
         margin-top: 3vh;
